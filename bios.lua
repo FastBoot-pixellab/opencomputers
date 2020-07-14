@@ -46,7 +46,7 @@ do
   if computer.getBootAddress() then
     init, reason = tryLoadFrom(computer.getBootAddress())
   end
-  if not init then
+  if not system then
     computer.setBootAddress()
     for address in component.list("filesystem") do
       init, reason = tryLoadFrom(address)
@@ -56,7 +56,7 @@ do
       end
     end
   end
-  if not init then
+  if not system then
     error("no bootable medium found" .. (reason and (": " .. tostring(reason)) or ""), 0)
   end
   computer.beep(1000, 0.2)
